@@ -1,0 +1,98 @@
+{% extends "extend.html"%}
+
+{%block style%}
+<title>travel</title>
+<style>
+    #button_grid img {
+        width: 75px;
+        height: 75px;
+        border-radius: 5%;
+    }
+</style>
+{%endblock style%}
+
+{%block body%}
+<div style="overflow: hidden;">
+    <h6 style="text-align: center;">摄影app</h6>
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- 指示符 -->
+        <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+    
+        <!-- 轮播图片 -->
+        <div class="carousel-inner" style="height: 220px; margin:5% 0px;">
+        <div class="carousel-item active">
+            <img :src='images[0]'>
+        </div>
+        <div class="carousel-item">
+            <img :src='images[1]'>
+        </div>
+        <div class="carousel-item">
+            <img :src='images[2]'>
+        </div>
+        </div>
+    
+        <!-- 左右切换按钮 -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        </a>
+        
+    </div>
+
+    <div class="row" id="button_grid" style="text-align: center;">
+        <div class="col" @click="get_detail('三亚')">
+            <img src="/static/images/icon/sanya.jpg">
+            <p>三亚</p>
+        </div>
+        <div class="col" @click="get_detail('厦门')">
+            <img src="/static/images/icon/xiamen.jpg">
+            <p>厦门</p>
+        </div>
+        <div class="col" @click="get_detail('大理')">   
+            <img src="/static/images/icon/dali.jpg">
+            <p>大理</p>
+        </div>
+    </div>
+    <div class="row" id="button_grid" style="text-align: center;">
+        <div class="col" @click="get_detail('日本')">
+            <img src="/static/images/icon/riben.jpg">
+            <p>日本</p>
+        </div>
+        <div class="col" @click="get_detail('巴厘岛')">
+            <img src="/static/images/icon/balidao.jpg">
+            <p>巴厘岛</p>
+        </div>
+        <div class="col" @click="get_detail('欧洲')">   
+            <img src="/static/images/icon/ouzhou.jpg">
+            <p>欧洲</p>
+        </div>
+    </div>
+</div>
+{%endblock body%}
+
+{%block vue%}
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            images: [
+                "https://static.runoob.com/images/mix/img_fjords_wide.jpg",
+                "https://static.runoob.com/images/mix/img_nature_wide.jpg",
+                "https://static.runoob.com/images/mix/img_mountains_wide.jpg"
+            ],
+        },
+        methods: {
+            get_detail: function (area) {
+                window.location.href = "/list_detail?area="+area
+            },
+        },
+    })
+</script>
+{%endblock vue%}

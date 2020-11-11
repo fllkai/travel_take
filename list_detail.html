@@ -1,0 +1,76 @@
+{%extends "extend.html"%}
+
+{%block style%}
+<title>图片浏览</title>
+<style>
+    header {
+        text-align: center;
+        font-size: 18px;
+        margin: 1px 0px 3px;
+    }
+
+    a img {
+        width: 30px;
+        margin-left: 5px;
+        margin-top: -6%;
+    }
+
+    #head {
+        position: fixed;
+        top: 0px;
+        padding-top: 2px;
+        width: 100%;
+        height: 50px;
+        z-index: 1;
+        background-color: ghostwhite;
+    }
+
+    #img_list {
+        margin-top: 55px;
+    }
+
+</style>
+{%endblock style%}
+
+{%block body%}
+<div id="head">
+    <header>
+        {{ area }}
+    </header>
+    <div id="reback">
+        <a href="/index">
+            <img src="/static/images/icon/reback.png">
+        </a>
+    </div>    
+</div>
+
+<div id="img_list">
+    <div class="card bg-dark text-white" style="margin: 1% 1px;" v-for="item in img_href_list">
+        <img class="card-img" :src="item" alt="Card image">
+    </div>
+</div>
+{%endblock body%}
+
+<!-- 除去底部栏 -->
+{%block footer%}
+{%endblock footer%}
+
+{%block vue%}
+<script src="/static/images/area/area_imgs.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            area: "{{ area }}",
+            img_href_list: []
+        },
+        mounted() {
+            // 执行计算当前地区图片链接
+            img_fix_url_list = img_json[this.area];
+            for (let index = 0; index < img_fix_url_list.length; index++) {
+                this.img_href_list.push("/static/images/area/"+img_fix_url_list[index]);
+            }
+        },
+    })
+</script>
+{%endblock vue%}

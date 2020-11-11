@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    {%block style%}
+    {%endblock style%}
+</head>
+<body >
+    <div id="app" class="container-full">
+    {%block body%}
+    {%endblock body%}
+    </div>
+    {%block footer%}
+        <style>
+            footer {
+                width: 100%;
+                height:60px;   /* footer的高度一定要是固定值*/ 
+                position: fixed;
+                bottom:0px;
+                left:0px;
+                background-color: gainsboro;
+                font-size: 12px;
+                padding-top: 1%;
+            }
+        </style>
+        <footer>
+            <div class="row" id="button_fotter" style="text-align: center;">
+                <div class="col">
+                    <a href="/index">
+                        <img src="/static/images/icon/index.png" style="width: 40px;">
+                        <p>主页</p>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="/talk">
+                        <img src="/static/images/icon/talk.png" style="width: 40px;">
+                        <p>咨询</p>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="/order">
+                        <img src="/static/images/icon/order.png" style="width: 40px;">
+                        <p>预定</p>
+                    </a>   
+                </div>
+            </div>
+        </footer>
+    {%endblock footer%}
+    {%block vue%}
+    {%endblock vue%}
+</body>
+</html>
