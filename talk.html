@@ -1,0 +1,86 @@
+{% extends "extend.html"%}
+
+{%block style%}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<title>talk</title>
+<style>
+    header {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 10%;
+    }
+
+    #phone {
+        font-size: 18px;
+    }
+    #phone input {
+        padding: 1% 0px;
+    }
+</style>
+{%endblock style%}
+
+{%block body%}
+<header>
+    咨询
+</header>
+<div>
+    <form style="margin: 0px 5%; ">
+        <div class="form-group row" id="phone">
+          <label for="staticEmail" class="col-sm-1 col-form-label"><b>Email</b></label>
+          <div class="col-sm-1">
+            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="三亚：010-8288399">
+            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="厦门：092-2332233">
+            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="大理：029-23223332">
+            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="海外：021-3433">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="inputName" placeholder="姓名" v-model="name">
+          </div>
+          <label for="inputPhone" class="col-sm-2 col-form-label">电话</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="inputPhone" placeholder="电话" v-model="phone">
+          </div>
+          <label for="inputText" class="col-sm-5 col-form-label">留言</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputText" placeholder="留言" v-model="mess">
+          </div>
+        </div>
+        <div style="text-align: center;">
+            <button type="button" class="btn btn-primary" @click="submit">提交</button>
+        </div>
+    </form>
+</div>
+{%endblock body%}
+
+{%block vue%}
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+          name: "",
+          phone: "",
+          mess: "",
+        },
+        methods: {
+            submit: function () {
+              axios.get('/api/talk_mess', {
+                params: {
+                  name: this.name,
+                  phone: this.phone,
+                  mess: this.mess
+                }
+              })
+              .then(function (response) {
+                alert(response.data);
+              })
+              .catch(function (error) {
+                alert("提交失败！");
+              });
+          },
+        },
+    })
+</script>
+{%endblock vue%}
