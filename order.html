@@ -1,0 +1,52 @@
+{% extends "extend.html"%}
+
+{%block style%}
+<title>order</title>
+<style>
+    header {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 3px;
+    }
+    #body_show {
+        overflow: auto;
+        margin-bottom: 60px;
+    }
+</style>
+{%endblock style%}
+
+{%block body%}
+<header>
+    预约
+</header>
+
+<div id="body_show">
+    <div class="card bg-dark text-white" style="margin: 1% 1px;" v-for="item in images" @click="take_order(item[0])">
+        <img class="card-img" :src="item[1]" alt="Card image">
+        <div class="card-img-overlay">
+          <h5 class="card-title" v-text="item[0]"></h5>
+        </div>
+    </div>
+</div>
+{%endblock body%}
+
+{%block vue%}
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            images: [
+                ["婚纱摄影", "/static/images/order/1.jpg"],
+                ["个人写真", "/static/images/order/2.jpg"],
+                ["旅拍", "/static/images/order/3.jpg"],
+                ["其他", "/static/images/order/4.jpg"],
+            ]
+        },
+        methods: {
+            take_order: function (order_type) {
+                window.location.href = "/take_order?order_type="+order_type;
+            },
+        },
+    })
+</script>
+{%endblock vue%}
