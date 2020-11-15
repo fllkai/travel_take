@@ -1,0 +1,102 @@
+{%extends "extend.html"%}
+
+{%block style%}
+<title>预约</title>
+
+<style>
+    #head {
+        position: fixed;
+        top: 0px;
+        padding-top: 2px;
+        width: 100%;
+        height: 50px;
+        z-index: 1;
+        background-color: ghostwhite;
+    }
+
+    header {
+        text-align: center;
+        font-size: 18px;
+        margin: 1px 0px 3px;
+    }
+
+    a img {
+        width: 30px;
+        margin-left: 5px;
+        margin-top: -6%;
+    }
+
+    #show {
+        margin-top: 55px;
+        text-align: center;
+    }
+
+    input {
+        width: 98%;
+        height: 200px;
+    }
+    footer {
+        width: 100%;
+        height:60px;   /* footer的高度一定要是固定值*/ 
+        position: fixed;
+        bottom:0px;
+        left:0px;
+        font-size: 12px;
+        padding-top: 1%;
+        text-align: center;
+    }
+
+    button {
+        width: 98%;
+    }
+</style>
+{%endblock style%}
+
+{%block body%}
+<div id="head">
+    <header>
+        {{ order_type }}
+    </header>
+    <div id="reback">
+        <a href="/order">
+            <img src="/static/images/icon/reback.png">
+        </a>
+    </div>    
+</div>
+
+<div id="show">
+    <div id="body_show">
+        <div class="card bg-dark text-white" style="margin: 1% 1px;">
+            <img class="card-img" :src="img_json['{{ order_type }}']" alt="Card image">
+        </div>
+    </div>
+
+    <div style="margin-top: 5%;">
+        <p style="text-align: left;">输入预约内容:</p>
+        <textarea name="Text1" cols="40" rows="8"></textarea>
+    </div>
+</div>
+
+<footer>
+    <button type="button" class="btn btn-primary">预约</button>
+</footer>
+{%endblock body%}
+
+{%block footer%}
+{%endblock footer%}
+
+{%block vue%}
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            img_json: {
+                "婚纱摄影": "/static/images/order/1.jpg",
+                "个人写真": "/static/images/order/2.jpg",
+                "旅拍": "/static/images/order/3.jpg",
+                "其他": "/static/images/order/4.jpg"
+            }
+        },
+    });
+</script>
+{%endblock vue%}
